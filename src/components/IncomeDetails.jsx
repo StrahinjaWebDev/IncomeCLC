@@ -1,27 +1,35 @@
 import React from "react";
 import { useState } from "react";
+import Income from "./Income";
+
 
 const IncomeDetails = () => {
   const [nav, setNav] = useState(false);
   const [time, setTime] = useState("Weekly");
-  const [backgroundColorGross, setBackgroundColorGross] = useState('bg-white')
-  const [backgroundColorIncome, setBackgroundColorIncome] = useState('bg-white')
+  const [backgroundColorGross, setBackgroundColorGross] = useState("bg-white");
+  const [backgroundColorIncome, setBackgroundColorIncome] =
+    useState("bg-white");
+   const [isDisplayed, setIsDisplayed] = useState('incomeDetails')
+  const [calculate, setCalculate] = useState("");
 
+  
+
+  
+ 
   const changeBackgroundColorGross = () => {
-    setBackgroundColorGross('bg-green-500')
-    setBackgroundColorIncome('bg-white-500')
-  }
+    setBackgroundColorGross("bg-green-500");
+    setBackgroundColorIncome("bg-white-500");
+  };
 
   const changeBackgroundColorIncome = () => {
-    setBackgroundColorIncome('bg-green-500')
-    setBackgroundColorGross('bg-white-500')
-
-  }
+    setBackgroundColorIncome("bg-green-500");
+    setBackgroundColorGross("bg-white-500");
+  };
 
   const handleTime = () => {
-    const timeValue = event.target.value 
-    setNav(!nav)
-    setTime(timeValue)
+    const timeValue = event.target.value;
+    setNav(!nav);
+    setTime(timeValue);
   };
 
   const handleNav = () => {
@@ -48,16 +56,16 @@ const IncomeDetails = () => {
             </button>{" "}
             {nav ? (
               <div className="absolute w-[4.5rem] h-[5rem] bg-gray-500 ml-[11.8rem] mt-7 flex flex-col justify-center gap-1 text-[0.7rem]">
-                <button value="Weekly" onClick={(handleTime)}>
+                <button value="Weekly" onClick={handleTime}>
                   Weekly
                 </button>
-                <button value="Fortnightly" onClick={(handleTime)}>
+                <button value="Fortnightly" onClick={handleTime}>
                   Fortnightly
                 </button>
-                <button value="Monthly" onClick={(handleTime)}>
+                <button value="Monthly" onClick={handleTime}>
                   Monthly
                 </button>
-                <button value="Annualy" onClick={(handleTime)}>
+                <button value="Annualy" onClick={handleTime}>
                   Annualy
                 </button>
               </div>
@@ -67,14 +75,27 @@ const IncomeDetails = () => {
           </div>
           <p>Please choose the income type</p>
           <div className="flex flex-row justify-evenly  ">
-            <button className={`${backgroundColorGross}`} onClick={changeBackgroundColorGross}>Gross income</button>
-            <button className={`${backgroundColorIncome}`} onClick={changeBackgroundColorIncome}>Net income</button>
+            <button
+              className={`${backgroundColorGross}`}
+              onClick={changeBackgroundColorGross}
+            >
+              Gross income
+            </button>
+            <button
+              className={`${backgroundColorIncome}`}
+              onClick={changeBackgroundColorIncome}
+            >
+              Net income
+            </button>
           </div>
           <div className="flex justify-center items-center">
-            <button className="flex ">Calculate</button>
+            <button className="flex ">
+              Calculate
+            </button>
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
