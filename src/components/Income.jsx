@@ -1,14 +1,24 @@
-// TODO: 1.Napravi drugu komponentu income 
-//U input se ukucava vrednost
-// Kad se predje na Income displauje se vrednost u nekom p tagu
-// kad se vrati u income details ostaje u inputu vidljiva vrednost 
+// kad se vrati u income details ostaje u inputu vidljiva vrednost
+import { useState } from "react";
 
-import React from 'react'
+const Income = ({ income }) => {
+  const [currentIncome, setCurrentIncome] = useState(income);
 
-const Income = () => {
   return (
-    <div>Income</div>
-  )
-}
+    <div className="h-[100vh] w-screen flex justify-center items-center">
+      <div className="w-[40rem] h-[30rem] border-[1px] border-black flex flex-col">
+        <div className="w-[100%] h-[5rem] border-[1px] border-black flex  gap-4">
+          <h1>Income tax calculator</h1>
+        </div>
+        <div className="w-[100%] h-[20rem] border-[1px] border-black flex flex-col ">
+          <div className="w-[100%] h-[5rem] border-[1px] border-black flex ">
+            {currentIncome > 0 && currentIncome}
+          </div>
+          <div className="w-[100%] h-[15rem] border-[1px] border-black flex "></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Income
+export default Income;

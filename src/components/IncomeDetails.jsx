@@ -1,21 +1,22 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Income from "./Income";
 
-
-const IncomeDetails = () => {
+const IncomeDetails = (props) => {
   const [nav, setNav] = useState(false);
   const [time, setTime] = useState("Weekly");
   const [backgroundColorGross, setBackgroundColorGross] = useState("bg-white");
   const [backgroundColorIncome, setBackgroundColorIncome] =
     useState("bg-white");
-   const [isDisplayed, setIsDisplayed] = useState('incomeDetails')
-  const [calculate, setCalculate] = useState("");
+  const [isDisplayed, setIsDisplayed] = useState("incomeDetails");
+  const [income, setIncome] = useState(0);
 
-  
 
-  
- 
+
+  useEffect(() => {
+    setIncome(props.typeState);
+  }, [props.typeState]);
+
   const changeBackgroundColorGross = () => {
     setBackgroundColorGross("bg-green-500");
     setBackgroundColorIncome("bg-white-500");
@@ -45,8 +46,13 @@ const IncomeDetails = () => {
           <div className="flex flex-row">
             <input
               className="border-2 border-black"
+              value={income > 0 && income } 
               type="number"
               placeholder="e.g. 12,000"
+              onChange={(e) => {
+                setIncome(e.target.value);
+                props.income(e.target.value);
+              }}
             />{" "}
             <button
               onClick={handleNav}
@@ -89,13 +95,10 @@ const IncomeDetails = () => {
             </button>
           </div>
           <div className="flex justify-center items-center">
-            <button className="flex ">
-              Calculate
-            </button>
+            <button className="flex ">Calculate</button>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

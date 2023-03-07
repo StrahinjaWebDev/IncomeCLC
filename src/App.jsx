@@ -6,10 +6,11 @@ export default function App() {
   const [componentThatIsDisplayed, setComponentThatIsDisplayed] = useState(
     "incomeDetailsComponent"
   );
+  const [income, setIncome] = useState(0);
 
   return (
-    <div >
-      <div >
+    <div>
+      <div>
         <button onClick={() => setComponentThatIsDisplayed("incomeComponent")}>
           Income
         </button>
@@ -19,10 +20,16 @@ export default function App() {
           Income Details
         </button>
       </div>
+
       {componentThatIsDisplayed === "incomeDetailsComponent" ? (
-        <IncomeDetails />
+        <IncomeDetails
+          income={(value) => setIncome(value)}
+          inputState={income}
+        />
       ) : (
-        <Income />
+        <Income
+        income={income} />
+        
       )}
     </div>
   );
