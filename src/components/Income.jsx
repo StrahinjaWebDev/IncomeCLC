@@ -1,8 +1,10 @@
 // kad se vrati u income details ostaje u inputu vidljiva vrednost
 import { useState } from "react";
 
-const Income = ({ income }) => {
-  const [currentIncome, setCurrentIncome] = useState(income);
+const Income = props => {
+  const [inputValue, setInputValue] = useState(props.inputValue);
+console.log(inputValue)
+
 
   return (
     <div className="h-[100vh] w-screen flex justify-center items-center">
@@ -12,7 +14,7 @@ const Income = ({ income }) => {
         </div>
         <div className="w-[100%] h-[20rem] border-[1px] border-black flex flex-col ">
           <div className="w-[100%] h-[5rem] border-[1px] border-black flex ">
-            {currentIncome > 0 && currentIncome}
+            {inputValue}
           </div>
           <div className="w-[100%] h-[15rem] border-[1px] border-black flex "></div>
         </div>

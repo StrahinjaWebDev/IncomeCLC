@@ -1,30 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Income from "./Income";
 
 const IncomeDetails = (props) => {
   const [nav, setNav] = useState(false);
   const [time, setTime] = useState("Weekly");
-  const [backgroundColorGross, setBackgroundColorGross] = useState("bg-white");
-  const [backgroundColorIncome, setBackgroundColorIncome] =
-    useState("bg-white");
-  const [isDisplayed, setIsDisplayed] = useState("incomeDetails");
-  const [income, setIncome] = useState(0);
-
-
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    setIncome(props.typeState);
-  }, [props.typeState]);
+    setInputValue(props.inputValue);
+  }, []);
 
-  const changeBackgroundColorGross = () => {
-    setBackgroundColorGross("bg-green-500");
-    setBackgroundColorIncome("bg-white-500");
-  };
+  useEffect(() => {
+    props.inputValueState(inputValue);
+  }, [inputValue]);
 
-  const changeBackgroundColorIncome = () => {
-    setBackgroundColorIncome("bg-green-500");
-    setBackgroundColorGross("bg-white-500");
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
   };
 
   const handleTime = () => {
@@ -46,13 +38,10 @@ const IncomeDetails = (props) => {
           <div className="flex flex-row">
             <input
               className="border-2 border-black"
-              value={income > 0 && income } 
+              value={inputValue > 0 && inputValue}
               type="number"
               placeholder="e.g. 12,000"
-              onChange={(e) => {
-                setIncome(e.target.value);
-                props.income(e.target.value);
-              }}
+              onChange={(e) => handleInputChange(e)}
             />{" "}
             <button
               onClick={handleNav}
@@ -81,18 +70,8 @@ const IncomeDetails = (props) => {
           </div>
           <p>Please choose the income type</p>
           <div className="flex flex-row justify-evenly  ">
-            <button
-              className={`${backgroundColorGross}`}
-              onClick={changeBackgroundColorGross}
-            >
-              Gross income
-            </button>
-            <button
-              className={`${backgroundColorIncome}`}
-              onClick={changeBackgroundColorIncome}
-            >
-              Net income
-            </button>
+            <button>Gross income</button>
+            <button>Net income</button>
           </div>
           <div className="flex justify-center items-center">
             <button className="flex ">Calculate</button>

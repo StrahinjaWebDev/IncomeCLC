@@ -6,8 +6,7 @@ export default function App() {
   const [componentThatIsDisplayed, setComponentThatIsDisplayed] = useState(
     "incomeDetailsComponent"
   );
-  const [income, setIncome] = useState(0);
-
+  const [inputValue, setInputValue] = useState("");
   return (
     <div>
       <div>
@@ -23,13 +22,14 @@ export default function App() {
 
       {componentThatIsDisplayed === "incomeDetailsComponent" ? (
         <IncomeDetails
-          income={(value) => setIncome(value)}
-          inputState={income}
+          inputValueState={(state) => setInputValue(state)}
+          inputValue={inputValue}
         />
       ) : (
         <Income
-        income={income} />
-        
+          inputValue={inputValue}
+          inputValueState={(state) => setInputValue(state)}
+        />
       )}
     </div>
   );
